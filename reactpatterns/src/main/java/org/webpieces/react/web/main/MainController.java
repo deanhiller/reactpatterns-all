@@ -31,11 +31,7 @@ public class MainController {
 	}
 
 	public Action index() {
-		//this is so the test can throw an exception from some random library that is mocked
-		someLib.doSomething(5);
-
-		//renderThis renders index.html in the same package as this controller class
-		return Actions.renderThis();
+		return Actions.redirectToUrl("/index.html");
 	}
 
 	public Render notFound() {

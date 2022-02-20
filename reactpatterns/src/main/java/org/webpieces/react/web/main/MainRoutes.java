@@ -26,6 +26,8 @@ public class MainRoutes implements Routes {
 		bldr.addStaticFile(BOTH, "/favicon.ico", "public/favicon.ico", false);
 		bldr.addStaticFile(BOTH, "/test.css", "public/crud/fonts.css", false);
 
+		bldr.addStaticDir(BOTH, "/", "react/", false);
+
 		bldr.setPageNotFoundRoute("MainController.notFound");
 		bldr.setInternalErrorRoute("MainController.internalError");
 	}

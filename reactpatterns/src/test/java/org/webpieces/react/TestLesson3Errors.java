@@ -73,24 +73,6 @@ public class TestLesson3Errors extends AbstractWebpiecesTest {
 	}
 	
 	/**
-	 * This tests bug in your webapp "/another" route, you could also test you have a bug in that route AND a bug in your internal
-	 * server route as well!!!
-	 */
-	@Test
-	public void testWebAppHasBugRenders500Route() {
-		mockLibrary.addExceptionToThrow(() -> {
-			throw new RuntimeException("test internal bug page");
-		});
-		HttpFullRequest req = createRequest("/");
-		
-		XFuture<HttpFullResponse> respFuture = http11Socket.send(req);
-		
-		ResponseWrapper response = ResponseExtract.waitResponseAndWrap(respFuture);
-		response.assertStatusCode(KnownStatusCode.HTTP_500_INTERNAL_SVR_ERROR);
-		response.assertContains("You encountered a Bug in our web software");
-	}
-	
-	/**
 	 * You could also test notFound route fails with exception too...
 	 */
 	@Test
