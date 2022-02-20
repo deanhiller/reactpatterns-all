@@ -1,4 +1,4 @@
-package org.webpieces.react.json;
+package org.webpieces.react.json.secure;
 
 import java.util.ArrayList;
 import java.util.List;

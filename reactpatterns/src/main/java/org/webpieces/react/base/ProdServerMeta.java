@@ -1,7 +1,7 @@
 package org.webpieces.react.base;
 
-import java.util.List;
-
+import com.google.common.collect.Lists;
+import com.google.inject.Module;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.webpieces.microsvc.server.api.RESTApiRoutes;
@@ -13,20 +13,16 @@ import org.webpieces.plugin.secure.properties.PropertiesConfig;
 import org.webpieces.plugin.secure.properties.PropertiesPlugin;
 import org.webpieces.plugin.secure.sslcert.InstallSslCertConfig;
 import org.webpieces.plugin.secure.sslcert.InstallSslCertPlugin;
+import org.webpieces.react.basesvr.YourGlobalModule;
+import org.webpieces.react.json.secure.JsonController;
+import org.webpieces.react.json.secure.SaveApi;
+import org.webpieces.react.web.main.MainRoutes;
 import org.webpieces.router.api.plugins.Plugin;
 import org.webpieces.router.api.routes.Routes;
 import org.webpieces.router.api.routes.WebAppConfig;
 import org.webpieces.router.api.routes.WebAppMeta;
 
-import com.google.common.collect.Lists;
-import com.google.inject.Module;
-
-import org.webpieces.react.basesvr.YourGlobalModule;
-import org.webpieces.react.json.*;
-import org.webpieces.react.web.login.LoginRoutes;
-import org.webpieces.react.web.main.MainRoutes;
-import org.webpieces.react.web.secure.crud.CrudRoutes;
-import org.webpieces.react.web.secure.crudajax.AjaxCrudRoutes;
+import java.util.List;
 
 //This is where the list of Guice Modules go as well as the list of RouterModules which is the
 //core of anything you want to plugin to your web app.  To make re-usable components, you create
@@ -65,13 +61,8 @@ public class ProdServerMeta implements WebAppMeta {
     public List<Routes> getRouteModules() {
 		return Lists.newArrayList(
 				new RESTApiRoutes(SaveApi.class, JsonController.class),
-				new RESTApiRoutes(ExampleRestAPI.class, JsonRESTController.class),
-				new MainRoutes(),
-				//The Controller package regex is org.webpieces.react.web.secure\..* so that we match org.webpieces.react.web.secure.* Controllers 
-				new LoginRoutes("/org/webpieces/react/web/login/AppLoginController", "org.webpieces.react.web.secure\\..*", "password"),
-				new CrudRoutes(),
-				new AjaxCrudRoutes(),
-				new JsonRoutes()
+				//new RESTApiRoutes(AuthAPI.class, AuthController.class),
+				new MainRoutes()
 				);
 	}
 

@@ -2,9 +2,7 @@ package org.webpieces.react.web.main;
 
 import static org.webpieces.ctx.api.HttpMethod.GET;
 import static org.webpieces.router.api.routes.Port.BOTH;
-import static org.webpieces.react.web.main.MainRouteId.ASYNC_ROUTE;
 import static org.webpieces.react.web.main.MainRouteId.MAIN_ROUTE;
-import static org.webpieces.react.web.main.MainRouteId.SYNC_ROUTE;
 
 import org.webpieces.router.api.routebldr.DomainRouteBuilder;
 import org.webpieces.router.api.routebldr.RouteBuilder;
@@ -22,8 +20,6 @@ public class MainRoutes implements Routes {
 		//The Controller.method is a relative or absolute path with ClassName.method at the end
 		//RouteIds are used to redirect in the webapp itself and must be unique
 		bldr.addRoute(BOTH, GET, "/",              "MainController.index", MAIN_ROUTE);
-		bldr.addRoute(BOTH, GET, "/sync",         "MainController.mySyncMethod", SYNC_ROUTE);
-		bldr.addRoute(BOTH, GET, "/async",         "MainController.myAsyncMethod", ASYNC_ROUTE); //for advanced users who want to release threads to do more work
 
 		bldr.addStaticDir(BOTH, "/assets/", "public/", false);
 		//Add a single file by itself(not really needed)

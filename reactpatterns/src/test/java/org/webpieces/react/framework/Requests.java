@@ -1,6 +1,6 @@
 package org.webpieces.react.framework;
 
-import org.webpieces.react.json.SearchRequest;
+import org.webpieces.react.json.secure.SearchRequest;
 
 public class Requests {
     public static SearchRequest createSearchRequest() {

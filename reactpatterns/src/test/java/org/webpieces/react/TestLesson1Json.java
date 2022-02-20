@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.webpieces.react.json.secure.SearchRequest;
+import org.webpieces.react.json.secure.SearchResponse;
 import org.webpieces.util.futures.XFuture;
 import org.webpieces.react.framework.FeatureTest;
 import org.webpieces.react.framework.Requests;

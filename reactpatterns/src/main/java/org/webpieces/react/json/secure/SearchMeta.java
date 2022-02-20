@@ -1,4 +1,4 @@
-package org.webpieces.react.json;
+package org.webpieces.react.json.secure;
 
 public class SearchMeta {
 

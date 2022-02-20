@@ -12,6 +12,7 @@ import org.webpieces.microsvc.client.api.HttpsConfig;
 import org.webpieces.microsvc.client.api.RESTClientCreator;
 import org.webpieces.nio.api.BackpressureConfig;
 import org.webpieces.plugin.backend.login.BackendLogin;
+import org.webpieces.react.web.login.BackendLoginImpl;
 import org.webpieces.router.api.extensions.ObjectStringConverter;
 import org.webpieces.router.api.extensions.SimpleStorage;
 import org.webpieces.router.api.extensions.Startable;
@@ -28,8 +29,6 @@ import org.webpieces.react.service.RemoteServiceSimulator;
 import org.webpieces.react.service.SimpleStorageImpl;
 import org.webpieces.react.service.SomeLibrary;
 import org.webpieces.react.service.SomeLibraryImpl;
-import org.webpieces.react.web.login.BackendLoginImpl;
-import org.webpieces.react.web.tags.MyHtmlTagCreator;
 
 import javax.inject.Singleton;
 
@@ -57,8 +56,7 @@ public class GuiceModule implements Module {
 		conversionBinder.addBinding().to(RoleEnum.WebConverter.class);
 
 		Multibinder<HtmlTagCreator> htmlTagCreators = Multibinder.newSetBinder(binder, HtmlTagCreator.class);
-		htmlTagCreators.addBinding().to(MyHtmlTagCreator.class);
-		
+
 	    binder.bind(SomeLibrary.class).to(SomeLibraryImpl.class);
 
 	    //Must bind a SimpleStorage for plugins to read/save data and render their html pages
