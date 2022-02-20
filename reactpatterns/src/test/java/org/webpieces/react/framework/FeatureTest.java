@@ -32,7 +32,6 @@ public class FeatureTest extends CompanyTest {
     private String[] args = { "-http.port=:0", "-https.port=:0", "-hibernate.persistenceunit=org.webpieces.react.db.DbSettingsInMemory", "-hibernate.loadclassmeta=true" };
 
     protected SearchApi saveApi;
-    protected ExampleRestAPI exampleRestAPI;
     protected MockRemoteService mockRemoteService = new MockRemoteService();
     protected SimpleMeterRegistry metrics;
 
@@ -41,7 +40,6 @@ public class FeatureTest extends CompanyTest {
         log.info("Setting up test");
         super.initialize();
         saveApi = super.createRestClient(SearchApi.class);
-        exampleRestAPI = super.createRestClient(ExampleRestAPI.class);
     }
 
     @After

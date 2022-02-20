@@ -6,14 +6,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.webpieces.react.framework.MockResponses;
 import org.webpieces.react.json.secure.SearchRequest;
 import org.webpieces.react.json.secure.SearchResponse;
-import org.webpieces.util.futures.XFuture;
 import org.webpieces.react.framework.FeatureTest;
 import org.webpieces.react.framework.Requests;
-import org.webpieces.react.json.*;
 import org.webpieces.react.service.SendDataRequest;
-import org.webpieces.react.service.SendDataResponse;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -39,7 +37,8 @@ public class TestLesson1Json extends FeatureTest {
 		//move complex request building out of the test...
 		SearchRequest req = Requests.createSearchRequest();
 
-		mockRemoteService.setSendDefaultRetValue(XFuture.completedFuture(new SendDataResponse()));
+		String match1 = "match111";
+		mockRemoteService.setSendDefaultRetValue(MockResponses.create(match1));
 
 		//always call the client api we test in the test method so developers can find what we test
 		//very easily.. (do not push this down behind a method as we have found it slows others down
@@ -47,34 +46,12 @@ public class TestLesson1Json extends FeatureTest {
 		SearchResponse resp = saveApi.search(req).get(5, TimeUnit.SECONDS);
 		SearchResponse resp2 = saveApi.search(req).get(5, TimeUnit.SECONDS);
 
-		validate(resp2);
+		validate(resp2, match1);
 	}
 
-	@Test
-	public void testPathParams() throws ExecutionException, InterruptedException, TimeoutException {
-		String id = "asdf";
-		int number = 567;
-		MethodResponse methodResponse = exampleRestAPI.method(id, number).get(5, TimeUnit.SECONDS);
-
-		Assert.assertEquals(id, methodResponse.getId());
-		Assert.assertEquals(number, methodResponse.getNumber());
-	}
-
-	@Test
-	public void testPathParamsPost() throws ExecutionException, InterruptedException, TimeoutException {
-		String id = "asdf1";
-		int number = 5671;
-		String something = "qwerasdfqewr";
-		PostTestResponse methodResponse = exampleRestAPI.postTest(id, number, new PostTestRequest(something)).get(5, TimeUnit.SECONDS);
-
-		Assert.assertEquals(id, methodResponse.getId());
-		Assert.assertEquals(number, methodResponse.getNumber());
-		Assert.assertEquals(something, methodResponse.getSomething());
-	}
-
-	private void validate(SearchResponse resp) {
+	private void validate(SearchResponse resp, String match1) {
 		//next if you want, move assert logic into a validate method to re-use amongst tests
-		Assert.assertEquals("match1", resp.getMatches().get(0));
+		Assert.assertEquals(match1, resp.getMatches().get(0));
 
 		//check metrics are wired correctly here as well
 		RequiredSearch result = metrics.get("testCounter");

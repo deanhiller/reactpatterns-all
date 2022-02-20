@@ -56,33 +56,6 @@
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li id="tab_home"><a href="@[MAIN_ROUTE]@">&{'Home', 'link.home'}&</a></li>
-                   	#{if _session.get('userId') != null}#
-                	<li id="tab_loggedin"><a id="loggedinhome" href="@[LOGGED_IN_HOME]@">&{'Logged in Home', 'link.home'}&</a></li>
-            		<li id="tab_store" class="dropdown">
-            			<a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown">&{'Examples', 'examples'}&</a>   
-						<!-- Dropdown Menu -->
-						<ul class="dropdown-menu">
-							<li><a href="@[LIST_USERS]@">&{'CRUD Example', 'crud'}&</a></li>
-			            	<li><a href="@[AJAX_LIST_USERS]@">&{ 'Ajax CRUD Example', 'ajax'}&</a></li>
-			            	
-			            	*{ We could use @[TEMPLATES]@ here BUT tests do not have the plugin so would fail}*
-			            	<li><a href="http://localhost:8080/@documentation/templates">&{ 'Tags', 'tags'}&</a></li>
-			        	</ul>
-			        </li>
-			        #{/if}#
-                    #{if _session.get('userId')}#
-                        <li>
-                        	<div style="padding-left: 15px;padding-right: 15px">
-                        	<div>${_session.get('userId')}$</div>
-                        	<div id="custom_logoutbtn">
-                        		<a id="logout" href="@[LOGOUT]@"  class="btn btn-primary" style="height: 18px;width: 110px">&{'Logout', 'link.logout'}&</a>
-                        	</div>
-                        	</div>
-                        </li>
-            		#{/if}#
-            		#{else}#
-                    <li id="tab_login"><a class="btn-header" href="@[LOGIN]@">&{'Login', 'link.login'}&</a></li>
-                    #{/else}#	
                 </ul>
             </div>
         </div>

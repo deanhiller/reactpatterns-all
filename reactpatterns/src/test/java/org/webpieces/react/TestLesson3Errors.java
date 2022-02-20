@@ -1,5 +1,8 @@
 package org.webpieces.react;
 
+import org.webpieces.httpparser.api.common.Header;
+import org.webpieces.httpparser.api.common.KnownHeaderName;
+import org.webpieces.httpparser.api.dto.*;
 import org.webpieces.util.futures.XFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
@@ -13,7 +16,6 @@ import org.webpieces.ddl.api.JdbcFactory;
 import org.webpieces.httpclient11.api.HttpFullRequest;
 import org.webpieces.httpclient11.api.HttpFullResponse;
 import org.webpieces.httpclient11.api.HttpSocket;
-import org.webpieces.httpparser.api.dto.KnownStatusCode;
 import org.webpieces.webserver.api.ServerConfig;
 import org.webpieces.webserver.test.AbstractWebpiecesTest;
 import org.webpieces.webserver.test.Asserts;
@@ -53,7 +55,7 @@ public class TestLesson3Errors extends AbstractWebpiecesTest {
 	private String[] args = { "-http.port=:0", "-https.port=:0", "-hibernate.persistenceunit=org.webpieces.react.db.DbSettingsInMemory", "-hibernate.loadclassmeta=true" };
 	private HttpSocket http11Socket;
 	private SimpleMeterRegistry metrics;
-	
+
 	@Before
 	public void setUp() throws InterruptedException, ClassNotFoundException, ExecutionException, TimeoutException {
 		Asserts.assertWasCompiledWithParamNames("test");
@@ -79,7 +81,7 @@ public class TestLesson3Errors extends AbstractWebpiecesTest {
 		mockLibrary.addExceptionToThrow(() -> {
 			throw new RuntimeException("test internal bug page");
 		});
-		HttpFullRequest req = TestLesson2Html.createRequest("/");
+		HttpFullRequest req = createRequest("/");
 		
 		XFuture<HttpFullResponse> respFuture = http11Socket.send(req);
 		
@@ -93,7 +95,7 @@ public class TestLesson3Errors extends AbstractWebpiecesTest {
 	 */
 	@Test
 	public void testNotFound() {
-		HttpFullRequest req = TestLesson2Html.createRequest("/route/that/does/not/exist");
+		HttpFullRequest req = createRequest("/route/that/does/not/exist");
 		
 		XFuture<HttpFullResponse> respFuture = http11Socket.send(req);
 		
@@ -101,27 +103,17 @@ public class TestLesson3Errors extends AbstractWebpiecesTest {
 		response.assertStatusCode(KnownStatusCode.HTTP_404_NOTFOUND);
 		response.assertContains("Your page was not found");
 	}
-	
-	/**
-	 * Tests a remote asynchronous system fails and a 500 error page is rendered
-	 */
-	@Test
-	public void testRemoteSystemDown() {
-		XFuture<FetchValueResponse> future = new XFuture<FetchValueResponse>();
-		mockRemote.addValueToReturn(future);
-		HttpFullRequest req = TestLesson2Html.createRequest("/async");
-		
-		XFuture<HttpFullResponse> respFuture = http11Socket.send(req);
-		
-		Assert.assertFalse(respFuture.isDone());
 
-		//notice that the thread returned but there is no response back to browser yet such that thread can do more work.
-		//next, simulate remote system returning a value..
-		future.completeExceptionally(new RuntimeException("complete future with exception"));
+	public static HttpFullRequest createRequest(String uri) {
+		HttpRequestLine requestLine = new HttpRequestLine();
+		requestLine.setMethod(KnownHttpMethod.GET);
+		requestLine.setUri(new HttpUri(uri));
+		HttpRequest req = new HttpRequest();
+		req.setRequestLine(requestLine );
+		req.addHeader(new Header(KnownHeaderName.HOST, "yourdomain.com"));
 
-		ResponseWrapper response = ResponseExtract.waitResponseAndWrap(respFuture);
-		response.assertStatusCode(KnownStatusCode.HTTP_500_INTERNAL_SVR_ERROR);
-		response.assertContains("You encountered a Bug in our web software");
+		HttpFullRequest fullReq = new HttpFullRequest(req, null);
+		return fullReq;
 	}
 
 	private class AppOverridesModule implements Module {
