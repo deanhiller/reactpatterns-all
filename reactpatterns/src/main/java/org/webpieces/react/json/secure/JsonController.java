@@ -16,7 +16,7 @@ import org.webpieces.react.service.RemoteService;
 import org.webpieces.react.service.SendDataRequest;
 
 @Singleton
-public class JsonController implements SaveApi {
+public class JsonController implements SearchApi {
 	
 	private static final Logger log = LoggerFactory.getLogger(JsonController.class);
 

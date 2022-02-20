@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.webpieces.util.context.Context;
 import org.webpieces.webserver.api.ServerConfig;
 import org.webpieces.react.Server;
-import org.webpieces.react.json.secure.SaveApi;
+import org.webpieces.react.json.secure.SearchApi;
 import org.webpieces.react.mock.JavaCache;
 import org.webpieces.react.mock.MockRemoteService;
 import org.webpieces.react.service.RemoteService;
@@ -31,7 +31,7 @@ public class FeatureTest extends CompanyTest {
     private final static Logger log = LoggerFactory.getLogger(FeatureTest.class);
     private String[] args = { "-http.port=:0", "-https.port=:0", "-hibernate.persistenceunit=org.webpieces.react.db.DbSettingsInMemory", "-hibernate.loadclassmeta=true" };
 
-    protected SaveApi saveApi;
+    protected SearchApi saveApi;
     protected ExampleRestAPI exampleRestAPI;
     protected MockRemoteService mockRemoteService = new MockRemoteService();
     protected SimpleMeterRegistry metrics;
@@ -40,7 +40,7 @@ public class FeatureTest extends CompanyTest {
     public void setUp() throws InterruptedException, ClassNotFoundException, ExecutionException, TimeoutException {
         log.info("Setting up test");
         super.initialize();
-        saveApi = super.createRestClient(SaveApi.class);
+        saveApi = super.createRestClient(SearchApi.class);
         exampleRestAPI = super.createRestClient(ExampleRestAPI.class);
     }
 

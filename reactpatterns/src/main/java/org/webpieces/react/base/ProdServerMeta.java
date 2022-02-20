@@ -15,7 +15,7 @@ import org.webpieces.plugin.secure.sslcert.InstallSslCertConfig;
 import org.webpieces.plugin.secure.sslcert.InstallSslCertPlugin;
 import org.webpieces.react.basesvr.YourGlobalModule;
 import org.webpieces.react.json.secure.JsonController;
-import org.webpieces.react.json.secure.SaveApi;
+import org.webpieces.react.json.secure.SearchApi;
 import org.webpieces.react.web.main.MainRoutes;
 import org.webpieces.router.api.plugins.Plugin;
 import org.webpieces.router.api.routes.Routes;
@@ -60,7 +60,7 @@ public class ProdServerMeta implements WebAppMeta {
 	@Override
     public List<Routes> getRouteModules() {
 		return Lists.newArrayList(
-				new RESTApiRoutes(SaveApi.class, JsonController.class),
+				new RESTApiRoutes(SearchApi.class, JsonController.class),
 				//new RESTApiRoutes(AuthAPI.class, AuthController.class),
 				new MainRoutes()
 				);
