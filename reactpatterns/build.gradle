@@ -48,6 +48,8 @@ dependencies {
   //AND we only use this so you work out of the box to start hacking 
   implementation deps['h2db']
 
+  implementation deps['jwt']
+
   //for connection pooling: https://mvnrepository.com/artifact/org.hibernate/hibernate-hikaricp
   implementation deps['hikari-cp']
  

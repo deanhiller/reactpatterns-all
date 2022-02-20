@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.webpieces.react.json.publicapi.AuthApi;
 import org.webpieces.util.context.Context;
 import org.webpieces.webserver.api.ServerConfig;
 import org.webpieces.react.Server;
@@ -32,6 +33,7 @@ public class FeatureTest extends CompanyTest {
     private String[] args = { "-http.port=:0", "-https.port=:0", "-hibernate.persistenceunit=org.webpieces.react.db.DbSettingsInMemory", "-hibernate.loadclassmeta=true" };
 
     protected SearchApi saveApi;
+    protected AuthApi authApi;
     protected MockRemoteService mockRemoteService = new MockRemoteService();
     protected SimpleMeterRegistry metrics;
 
@@ -40,6 +42,7 @@ public class FeatureTest extends CompanyTest {
         log.info("Setting up test");
         super.initialize();
         saveApi = super.createRestClient(SearchApi.class);
+        authApi = super.createRestClient(AuthApi.class);
     }
 
     @After
