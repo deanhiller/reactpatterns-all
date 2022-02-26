@@ -2,6 +2,6 @@ import User from "./User";
 
 export default interface UserListener {
 
-    userCreated(): User
-    userRemoved(): User
+    userCreated(user: User): void
+    userRemoved(user: User): void
 }

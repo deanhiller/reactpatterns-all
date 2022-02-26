@@ -1,10 +1,10 @@
 export default interface User {
 
     getId(): number
-    setId(): void
+    setId(id: number): void
     getFirstName(): string
-    setFirstName(): void
+    setFirstName(name: string): void
     getLastName(): string
-    setLastName(): void
+    setLastName(name: string): void
 
 }
