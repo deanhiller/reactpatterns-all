@@ -1,12 +1,9 @@
 package org.webpieces.react.web.main;
 
-import static org.webpieces.ctx.api.HttpMethod.GET;
 import static org.webpieces.router.api.routes.Port.BOTH;
-import static org.webpieces.react.web.main.MainRouteId.MAIN_ROUTE;
 
 import org.webpieces.router.api.routebldr.DomainRouteBuilder;
 import org.webpieces.router.api.routebldr.RouteBuilder;
-import org.webpieces.router.api.routebldr.ScopedRouteBuilder;
 import org.webpieces.router.api.routes.Routes;
 
 public class MainRoutes implements Routes {
