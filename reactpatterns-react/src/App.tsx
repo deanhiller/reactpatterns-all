@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Outlet, Link, BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import NotFound from "./routes/notFound";
 import Expenses from "./routes/expenses";
 import Invoices from "./routes/invoices";
