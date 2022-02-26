@@ -1,13 +1,11 @@
-import {render, screen} from "@testing-library/react";
-import App from "../../../App";
 import StateMachineBuilder from "../api/StateMachineBuilder";
 import MockTransitionListener from "./mock/MockTransitionListener";
-import assert from "assert";
+import StateMachineBuilderFactory from "../api/StateMachineBuilderFactory";
 
 var builder: StateMachineBuilder;
 
 beforeEach(() => {
-    builder = StateMachineBuilder.createFactory();
+    builder = StateMachineBuilderFactory.createBuilder();
 });
 
 afterEach(() => {
@@ -38,7 +36,7 @@ test('Test on off statemachine', () => {
 
     stateMachine.fireEvent(offEvent);
 
-    expect(stateMachine.getCurrentState()).toBe(off));
+    expect(stateMachine.getCurrentState()).toBe(off);
 
     const temp = mock.requestList;
     expect(mock.requestList.length).toBe(1);

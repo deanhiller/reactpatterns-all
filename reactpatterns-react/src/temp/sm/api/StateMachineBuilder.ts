@@ -1,19 +1,14 @@
 import StateMachine from "./StateMachine";
-import {StateMachineBuilderImpl} from "../impl/StateMachineBuilderImpl";
 import State from "./State";
 import Transition from "./Transition";
 
-export default abstract class StateMachineBuilder
+export default interface StateMachineBuilder
 {
-    static createFactory():StateMachineBuilder {
-        return new StateMachineBuilderImpl();
-    }
+    createState(name: string): State;
 
-    abstract createState(name: string): State;
+    createTransition(startState: State, endState: State, event: string): Transition;
 
-    abstract createTransition(startState: State, endState: State, event: string): Transition;
+    setInitialState(initialState: State): void;
 
-    abstract setInitialState(initialState: State): void;
-
-    abstract build() : StateMachine;
+    build() : StateMachine;
 }

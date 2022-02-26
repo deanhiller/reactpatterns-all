@@ -4,7 +4,7 @@ import UnsupportedException from "../api/UnsupportedException";
 import Transition from "../api/Transition";
 import StateMachine from "../api/StateMachine";
 
-export class StateMachineBuilderImpl extends StateMachineBuilder {
+export default class StateMachineBuilderImpl implements StateMachineBuilder {
 
     createState(name: string): State {
         throw new UnsupportedException("you need to implement");
