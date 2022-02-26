@@ -1,23 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Outlet, Link } from "react-router-dom";
+import {Outlet, Link, BrowserRouter, Routes, Route} from "react-router-dom";
+import NotFound from "./routes/notFound";
+import Expenses from "./routes/expenses";
+import Invoices from "./routes/invoices";
+import Invoice from "./routes/invoice";
+import MainPage from "./routes/mainpage"
 
 function App() {
   return (
-      <div>
-          <h1>Bookkeeper</h1>
-          <nav
-              style={{
-                  borderBottom: "solid 1px",
-                  paddingBottom: "1rem"
-              }}
-          >
-              <Link to="/invoices">Invoices</Link> |{" "}
-              <Link to="/expenses">Expenses</Link>
-          </nav>
-          <Outlet />
-      </div>
+      <BrowserRouter>
+          <Routes>
+              <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<MainPage />}>
+                  <Route path="expenses" element={<Expenses />} />
+                  <Route path="invoices" element={<Invoices />}>
+                      <Route path=":invoiceId" element={<Invoice />} />
+                  </Route>
+              </Route>
+          </Routes>
+      </BrowserRouter>
   );
 }
 

@@ -11,18 +11,11 @@ import reportWebVitals from './reportWebVitals';
 import Expenses from "./routes/expenses";
 import Invoices from "./routes/invoices";
 import NotFound from "./routes/notFound";
+import Invoice from "./routes/invoice";
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
-          <Routes>
-              <Route path="*" element={<NotFound />} />
-              <Route path="/" element={<App />}>
-                  <Route path="expenses" element={<Expenses />} />
-                  <Route path="invoices" element={<Invoices />} />
-              </Route>
-          </Routes>
-      </BrowserRouter>
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
