@@ -2,7 +2,7 @@ import StateMachineBuilder from "../api/StateMachineBuilder";
 import MockTransitionListener from "./mock/MockTransitionListener";
 import StateMachineBuilderFactory from "../api/StateMachineBuilderFactory";
 
-var builder: StateMachineBuilder;
+let builder: StateMachineBuilder;
 
 beforeEach(() => {
     builder = StateMachineBuilderFactory.createBuilder();

@@ -1,7 +1,7 @@
 import StateMachineBuilder from "../api/StateMachineBuilder";
 import StateMachineBuilderFactory from "../api/StateMachineBuilderFactory";
 
-var builder: StateMachineBuilder;
+let builder: StateMachineBuilder;
 
 beforeEach(() => {
     builder = StateMachineBuilderFactory.createBuilder();
