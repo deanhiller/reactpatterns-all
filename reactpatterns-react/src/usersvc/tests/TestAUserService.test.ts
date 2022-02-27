@@ -14,7 +14,7 @@ beforeEach(() => {
 afterEach(() => {
 });
 
-test ('Test create user', () => {
+function createUser(): void {
     const name2 = "Yun";
 
     const employee = userSvc.createUser(id1, name1, "hiller");
@@ -31,14 +31,19 @@ test ('Test create user', () => {
     const employeeRes2 = userSvc.getUser(id2);
     expect(employeeRes2?.getId()).toBe(id2);
     expect(employeeRes2?.getFirstName()).toBe(name2);
+}
+
+test ('Test create user', () => {
+    createUser();
 });
 
 test ('Test Remove User', () => {
+    createUser();
 
     const employee = userSvc.removeUser(id1);
     expect(employee?.getId()).toBe(id1);
     expect(employee?.getFirstName()).toBe(name1);
 
     const user = userSvc.getUser(id1);
-    expect(user?.getId()).toBe(null);
+    expect(user).toBe(null);
 });
