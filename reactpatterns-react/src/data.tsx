@@ -1,4 +1,19 @@
 
+class Invoice {
+    name: string;
+    number: number;
+    amount: string;
+    due: string;
+
+    constructor(name:string, number:number, amount:string, due:string){
+        this.name = name;
+        this.number = number;
+        this.amount = amount;
+        this.due = due;
+    }
+
+}
+
 let invoices = [
     {
         name: "Santa Monica",
@@ -34,4 +49,20 @@ let invoices = [
 
 export function getInvoices() {
     return invoices;
+}
+
+export function getInvoice(num: number): Invoice | undefined {
+    let jsonObj = invoices.find(
+        (invoice) => invoice.number === num
+    );
+    if(!jsonObj)
+        return undefined;
+    const { name, number, amount, due} = jsonObj;
+    return new Invoice(name, number, amount, due);
+}
+
+export function deleteInvoice(number: number) {
+    invoices = invoices.filter(
+        (invoice) => invoice.number !== number
+    );
 }
