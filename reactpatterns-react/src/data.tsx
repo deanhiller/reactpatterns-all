@@ -1,5 +1,5 @@
 
-class Invoice {
+export class Invoice {
     name: string;
     number: number;
     amount: string;

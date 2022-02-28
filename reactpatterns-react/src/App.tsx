@@ -6,6 +6,7 @@ import Expenses from "./routes/expenses";
 import Invoices from "./routes/invoices";
 import Invoice from "./routes/invoice";
 import MainPage from "./routes/mainpage"
+import ViewInvoice from "./routes/invoice";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
                               </main>
                           }
                       />
-                      <Route path=":invoiceId" element={<Invoice />} />
+                      <Route path=":invoiceId" element={<ViewInvoice />} />
                   </Route>
               </Route>
           </Routes>
