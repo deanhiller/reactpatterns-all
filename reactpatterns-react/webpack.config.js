@@ -45,7 +45,7 @@ module.exports = {
     nodeEnv: 'development',
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'tsx', '.ts', '.html', '.scss'],
+    extensions: ['.js', '.jsx', '.tsx', '.ts', '.html', '.scss'],
     modules: ['node_modules'],
   },
 };
