@@ -1,5 +1,6 @@
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {deleteInvoice, getInvoice, Invoice} from "../data";
+import Button from '@mui/material/Button';
 
 export default function ViewInvoice() {
     let navigate = useNavigate();
@@ -17,14 +18,15 @@ export default function ViewInvoice() {
                 </p>
                 <p>Due Date: {invoice.due}</p>
                 <p>
-                    <button
+
+                    <Button variant="contained" color="secondary"
                         onClick={() => {
                             deleteInvoice(id);
                             navigate("/invoices" + location.search);
                         }}
                     >
                         Delete
-                    </button>
+                    </Button>
                 </p>
             </main>
         );
