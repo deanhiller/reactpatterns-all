@@ -3,7 +3,6 @@ import { JWTRegister } from '../../components/authentication/jwt-register';
 import { Auth0Register } from '../../components/authentication/auth0-register';
 import { Logo } from '../../components/logo';
 import { useAuth } from '../../hooks/use-auth';
-import {NavLink} from "react-router-dom";
 
 type Platform = 'Amplify' | 'Auth0' | 'Firebase' | 'JWT';
 
@@ -43,9 +42,6 @@ const Register = () => {
                 justifyContent: 'center'
               }}
             >
-              <NavLink
-                  to={'/'}
-              >
                 <a href={"/"}>
                   <Logo
                     sx={{
@@ -54,7 +50,6 @@ const Register = () => {
                     }}
                   />
                 </a>
-              </NavLink>
               <Typography variant="h4">
                 Register
               </Typography>
@@ -67,23 +62,12 @@ const Register = () => {
                 </Typography>
             </Box>
               <div>
-                  <NavLink
-                      style={({ isActive }) => {
-                          return {
-                              display: "block",
-                              margin: "1rem 0",
-                              color: isActive ? "red" : "",
-                          };
-                      }}
-                      to={'/login'}
-                  >
-                      <Link
+                      <Link href={'/login'}
                           color="textPrimary"
                           variant="body2"
                       >
                           Already have an account?
                       </Link>
-                  </NavLink>
               </div>
             <Box
               sx={{
@@ -96,23 +80,12 @@ const Register = () => {
             </Box>
             <Divider sx={{ my: 3 }} />
               <div>
-                  <NavLink
-                      style={({ isActive }) => {
-                          return {
-                              display: "block",
-                              margin: "1rem 0",
-                              color: isActive ? "red" : "",
-                          };
-                      }}
-                      to={'/login'}
-                  >
-                      <Link
+                      <Link href={'/login'}
                           color="textPrimary"
                           variant="body2"
                       >
                           Already have an account?
                       </Link>
-                  </NavLink>
               </div>
           </Card>
         </Container>

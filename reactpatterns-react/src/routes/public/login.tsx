@@ -3,7 +3,6 @@ import { Auth0Login } from '../../components/authentication/auth0-login';
 import { JWTLogin } from '../../components/authentication/jwt-login';
 import { Logo } from '../../components/logo';
 import { useAuth } from '../../hooks/use-auth';
-import {NavLink} from "react-router-dom";
 
 type Platform = 'Amplify' | 'Auth0' | 'Firebase' | 'JWT';
 
@@ -43,18 +42,14 @@ const Login = () => {
                 justifyContent: 'center'
               }}
             >
-              <NavLink
-                  to={"/"}
-              >
-                <a href={"/"}>
+              <Link href={"/"}>
                   <Logo
                     sx={{
                       height: 40,
                       width: 40
                     }}
                   />
-                </a>
-              </NavLink>
+              </Link>
               <Typography variant="h4">
                 Log in
               </Typography>
@@ -77,32 +72,20 @@ const Login = () => {
             </Box>
             <Divider sx={{ my: 3 }} />
             <div>
-              <NavLink
-                to={
-                  '/register'
-                }
-              >
-                <Link
+                <Link href={'/register'}
                   color="textSecondary"
                   variant="body2"
                 >
                   Create new account
                 </Link>
-              </NavLink>
             </div>
               <Box sx={{ mt: 1 }}>
-                <NavLink
-                  to={
-                      '/authentication/password-recovery'
-                  }
-                >
-                  <Link
+                  <Link href={'/authentication/password-recovery'}
                     color="textSecondary"
                     variant="body2"
                   >
                     Forgot password
                   </Link>
-                </NavLink>
               </Box>
           </Card>
         </Container>
