@@ -1,28 +1,11 @@
 import { useState } from 'react';
 import type { FC } from 'react';
 import { Box, Button, FormHelperText } from '@mui/material';
-import { useAuth } from '../../hooks/use-auth';
-import { useMounted } from '../../hooks/use-mounted';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Auth0Login: FC = (props) => {
-  const isMounted = useMounted();
-  //const router = useRouter();
-  const { loginWithRedirect } = useAuth();
+  const { loginWithRedirect } = useAuth0();
   const [error, setError] = useState<string | null>(null);
-
-  const handleLogin = async (): Promise<void> => {
-    try {
-      await loginWithRedirect({
-        returnUrl: '/dashboard'
-      });
-    } catch (err: any) {
-      console.error(err);
-
-      if (isMounted()) {
-        setError(err.message);
-      }
-    }
-  };
 
   return (
     <div {...props}>
@@ -40,7 +23,7 @@ export const Auth0Login: FC = (props) => {
         }}
       >
         <Button
-          onClick={handleLogin}
+          onClick={() => loginWithRedirect()}
           variant="contained"
         >
           Log In

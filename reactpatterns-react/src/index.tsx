@@ -12,6 +12,8 @@ ReactDOM.render(
           domain="dev-thlfc87y.us.auth0.com"
           clientId="DCsQKqhOGK3f1JArxGSFrnpcQm2UCyEt"
           redirectUri={window.location.origin +"/dashboard"}
+          audience="https://app.ctoteachings.com/predictions"
+          scope="read:current_user update:current_user_metadata"
           >
       <CssBaseline/>
       <App />

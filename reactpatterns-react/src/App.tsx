@@ -8,6 +8,7 @@ import MainPage from "./routes/mainpage"
 import ViewInvoice from "./routes/invoice";
 import Register from './routes/public/register';
 import Login from "./routes/public/login";
+import Dashboard from "./routes/private/user/dashboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<Login />} />
+              <Route path="dashboard" element={<Dashboard/>}/>
               <Route path="/" element={<MainPage />}>
                   <Route path="expenses" element={<Expenses />} />
                   <Route path="invoices" element={<Invoices />}>
