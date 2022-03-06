@@ -4,11 +4,18 @@ import './index.css';
 import App from './App';
 //import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
+import {Auth0Provider} from "@auth0/auth0-react";
 
 ReactDOM.render(
   <React.StrictMode>
+      <Auth0Provider
+          domain="dev-thlfc87y.us.auth0.com"
+          clientId="DCsQKqhOGK3f1JArxGSFrnpcQm2UCyEt"
+          redirectUri={window.location.origin +"/dashboard"}
+          >
       <CssBaseline/>
       <App />
+      </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

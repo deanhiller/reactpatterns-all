@@ -1,5 +1,4 @@
 import { Box, Card, Container, Divider, Link, Typography } from '@mui/material';
-import { JWTRegister } from '../../components/authentication/jwt-register';
 import { Auth0Register } from '../../components/authentication/auth0-register';
 import { Logo } from '../../components/logo';
 import { useAuth } from '../../hooks/use-auth';
@@ -75,8 +74,7 @@ const Register = () => {
                 mt: 3
               }}
             >
-                {platform === 'Auth0' && <Auth0Register />}
-                {platform === 'JWT' && <JWTRegister />}
+                <Auth0Register />
             </Box>
             <Divider sx={{ my: 3 }} />
               <div>

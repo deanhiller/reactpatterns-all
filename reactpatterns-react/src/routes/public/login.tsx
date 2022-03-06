@@ -1,6 +1,5 @@
 import { Box, Card, Container, Divider, Link, Typography } from '@mui/material';
 import { Auth0Login } from '../../components/authentication/auth0-login';
-import { JWTLogin } from '../../components/authentication/jwt-login';
 import { Logo } from '../../components/logo';
 import { useAuth } from '../../hooks/use-auth';
 
@@ -67,8 +66,7 @@ const Login = () => {
                 mt: 3
               }}
             >
-              {platform === 'Auth0' && <Auth0Login />}
-              {platform === 'JWT' && <JWTLogin />}
+              <Auth0Login />
             </Box>
             <Divider sx={{ my: 3 }} />
             <div>
