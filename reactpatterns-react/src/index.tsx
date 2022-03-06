@@ -5,6 +5,8 @@ import App from './App';
 //import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
 import {Auth0Provider} from "@auth0/auth0-react";
+import {ThemeProvider} from "@mui/material";
+import {createTheme} from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,8 +17,16 @@ ReactDOM.render(
           audience="https://app.ctoteachings.com/predictions"
           scope="read:current_user update:current_user_metadata"
           >
-      <CssBaseline/>
-      <App />
+          <ThemeProvider
+              theme={createTheme({
+                  direction: 'ltr',
+                  responsiveFontSizes: true,
+                  mode: 'light'
+              })}
+          >
+            <CssBaseline/>
+            <App />
+          </ThemeProvider>
       </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
