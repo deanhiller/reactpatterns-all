@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +24,7 @@ import { ContactsPopover } from './contacts-popover';
 import { ContentSearchDialog } from './content-search-dialog';
 import { NotificationsPopover } from './notifications-popover';
 import { LanguagePopover } from './language-popover';
+import {Auth0ContextInterface, useAuth0, User} from "@auth0/auth0-react";
 
 interface DashboardNavbarProps extends AppBarProps {
   onOpenSidebar?: () => void;
@@ -210,12 +211,7 @@ const NotificationsButton = () => {
 const AccountButton = () => {
   const anchorRef = useRef<HTMLButtonElement | null>(null);
   const [openPopover, setOpenPopover] = useState<boolean>(false);
-  // To get the user from the authContext, you can use
-  // `const { user } = useAuth();`
-  const user = {
-    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-    name: 'Anika Visser'
-  };
+  const { user, isAuthenticated, isLoading }: Auth0ContextInterface<User> = useAuth0();
 
   const handleOpenPopover = (): void => {
     setOpenPopover(true);
@@ -242,7 +238,8 @@ const AccountButton = () => {
             height: 40,
             width: 40
           }}
-          src={user.avatar}
+          src={user?.picture}
+          alt={user?.name}
         >
           <UserCircleIcon fontSize="small" />
         </Avatar>

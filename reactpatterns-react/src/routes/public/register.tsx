@@ -1,13 +1,9 @@
 import { Box, Card, Container, Divider, Link, Typography } from '@mui/material';
 import { Auth0Register } from '../../components/authentication/auth0-register';
 import { Logo } from '../../components/logo';
-import { useAuth } from '../../hooks/use-auth';
-
-type Platform = 'Amplify' | 'Auth0' | 'Firebase' | 'JWT';
 
 const Register = () => {
   //const router = useRouter();
-  const { platform }: { platform: Platform } = useAuth();
   //const { disableGuard } = router.query;
 
   return (
